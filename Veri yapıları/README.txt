@@ -23,7 +23,7 @@ Kaynak Kodunu İndir:
 bash
 Kopyala
 Düzenle
-git clone https://github.com/kullanici_adi/insertion-sort-c.git
+git clone https://github.com/Okeanos22/Insertion-Sort---C-Program-/tree/main/Veri%20yapıları
 C Kodunu Derle:
 
 Terminal veya komut istemcisinde, projeyi indirdiğiniz dizine gidin ve derleme komutunu çalıştırın:
