@@ -1,0 +1,36 @@
+typedef struct TrieNode {
+    struct TrieNode *children[ALPHABET_SIZE];
+    int isEndOfWord;
+} TrieNode;
+
+TrieNode* createNode() {
+    TrieNode* node = (TrieNode*)malloc(sizeof(TrieNode));
+    node->isEndOfWord = 0;
+    for (int i = 0; i < ALPHABET_SIZE; i++)
+        node->children[i] = NULL;
+    return node;
+}
+
+void insert(TrieNode* root, const char* key) {
+    TrieNode* current = root;
+    while (*key) {
+        int index = *key - 'a';
+        if (!current->children[index])
+            current->children[index] = createNode();
+        current = current->children[index];
+        key++;
+    }
+    current->isEndOfWord = 1;
+}
+
+int search(TrieNode* root, const char* key) {
+    TrieNode* current = root;
+    while (*key) {
+        int index = *key - 'a';
+        if (!current->children[index])
+            return 0;
+        current = current->children[index];
+        key++;
+    }
+    return current && current->isEndOfWord;
+}

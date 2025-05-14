@@ -1,0 +1,12 @@
+void customSort(int arr[], int n, int result[]) {
+    insertionSort(arr, n);  // Önce sırala
+    int left = 0, right = n - 1;
+    int idx = 0;
+    while (left <= right) {
+        if (idx % 2 == 0) {
+            result[idx++] = arr[right--];
+        } else {
+            result[idx++] = arr[left++];
+        }
+    }
+}

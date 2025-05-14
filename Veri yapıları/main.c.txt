@@ -1,0 +1,47 @@
+int main() {
+    int original[SIZE], arr1[SIZE], arr2[SIZE], customResult[SIZE];
+    srand(time(NULL));
+
+    for (int i = 0; i < SIZE; i++) {
+        original[i] = rand() % 1001;
+    }
+    memcpy(arr1, original, sizeof(original));
+    memcpy(arr2, original, sizeof(original));
+
+    clock_t start, end;
+
+    // Insertion Sort
+    start = clock();
+    insertionSort(arr1, SIZE);
+    end = clock();
+    double insertionTime = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+    // Selection Sort
+    start = clock();
+    selectionSort(arr2, SIZE);
+    end = clock();
+    double selectionTime = ((double)(end - start)) / CLOCKS_PER_SEC;
+
+    printf("Ilk 10 sayi (orijinal): "); printPartialArray(original, SIZE);
+    printf("Insertion Sort suresi: %.6f saniye\n", insertionTime);
+    printf("Selection Sort suresi: %.6f saniye\n", selectionTime);
+    printf("Daha hizli algoritma: %s\n\n", insertionTime < selectionTime ? "Insertion Sort" : "Selection Sort");
+
+    // Custom Sort (Görev 2)
+    customSort(original, SIZE, customResult);
+    printf("Ozel siralama sonucu (ilk 10): "); printPartialArray(customResult, SIZE);
+
+    // Trie örneği (Görev 3)
+    TrieNode* root = createNode();
+    insert(root, "apple");
+    insert(root, "app");
+    insert(root, "bat");
+    insert(root, "ball");
+
+    printf("\nTrie arama testleri:\n");
+    printf("'app' bulundu mu? %s\n", search(root, "app") ? "EVET" : "HAYIR");
+    printf("'bat' bulundu mu? %s\n", search(root, "bat") ? "EVET" : "HAYIR");
+    printf("'cat' bulundu mu? %s\n", search(root, "cat") ? "EVET" : "HAYIR");
+
+    return 0;
+}
